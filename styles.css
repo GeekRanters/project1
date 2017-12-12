@@ -1,0 +1,23 @@
+body{
+  display: flex;
+  background-color: mistyrose;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.startView{
+  display: inline-block;
+}
+
+.selectSettingsView{
+  display: none;
+}
+
+.hidden{
+  display: none;
+}
+
+.visible{
+  display: flex;
+}
