@@ -1,43 +1,23 @@
-var initialView = document.querySelector('#openSelectSettingsView');
 var boardCanvas = document.querySelector('.grid');
 var gamePlayView = document.querySelector('.gamePlayView');
+var gridBoxes = document.querySelectorAll('.box');
 
-//this function starts the game after user clicks on the image
-var openSelectSettings = function(){
-  gamePlayView.scrollIntoView();
-};
 
-//moved the next few lines out of a function because they're used globally
-var columns = prompt("How many columns do you want the board to have?");
-var rows = prompt("How many rows do you want the board to have?");
-var winningNumber = prompt("How many X's or O's does one need in one row to win?");
-
-//this function is based on https://github.com/LearnTeachCode/Battleship-JavaScript/blob/gh-pages/battleship.js
-//it builds the board on the screen and creates unique id's for each small square (div)
-var showBoard = function (columns,rows){
-  // set grid rows and columns and the size of each square
-  var squareSize = 50;
-
-// make the grid columns and rows
-  for (i = 0; i < columns; i++) {
-	   for (j = 0; j < rows; j++) {
-		// create a new div HTML element for each grid square and make it the right size
-		  var square = document.createElement("div");
-		  boardCanvas.appendChild(square);
-      square.classList.add("sq1");
-      // give each div element a unique id based on its row and column, like "s00"
-		  square.id = 's' + j + i;
-
-		// set each grid square's coordinates: multiples of the current row or column number
-		  var topPosition = j * squareSize;
-		  var leftPosition = i * squareSize;
-
-		// use CSS absolute positioning to place each grid square on the page
-		  square.style.top = topPosition + 'px';
-		  square.style.left = leftPosition + 'px';
-	  }
-  }
-};
+/*var box00 = document.querySelector('.box00');
+var box01 = document.querySelector('.box01');
+var box02 = document.querySelector('.box02');
+var box10 = document.querySelector('.box10');
+var box11 = document.querySelector('.box11');
+var box12 = document.querySelector('.box12');
+var box20 = document.querySelector('.box20');
+var box21 = document.querySelector('.box21');
+var box22 = document.querySelector('.box22');
+*/
+var columns = 3;
+var rows = 3;
+var winningSeq1 = "XXX";
+var winningSeq2 = "OOO";
+var turnCounter = 0; //at the start of the game the counter is set to 0
 
 
 //this function returns an array of arrays
@@ -96,7 +76,7 @@ var createDiagonalStrings = function(array, columns, rows, bottomToTop) {
         if(temp.length > 0) {
             returnArray.push(temp.join(''));
         }
-    }
+      }
   return returnArray;
 };
 
@@ -121,24 +101,45 @@ var checkGrid = function(grid, columns, rows, winningSequence){
   return checkResult;
 };
 
+var determinePlayer = function(){
+  if (turnCounter % 2 === 0){
+    console.log("Player 1 is playing");
+    symbol = "X";
+  } else {
+    console.log("Player 2 is playing");
+    symbol = "O";
+  }
+  return symbol;
+};
+
+var oneRound = function(event){
+  //checks who's currently playing (based on turnCounter) in order to put an X or an O on the boardCanvas
+  var symbol = determinePlayer();
+  //add the symbol to the boardCanvas
+  event.target.textContent = symbol;
+  //add the symbol to the grid array
+  var position = event.target.id; //returns a string with array index values
+  var columnNum = position[0];
+  var rowNum = position[1];
+  grid[columnNum][rowNum] = symbol;
+  //remove the eventlistener so the box can not be clicked again
+  event.target.removeEventListener("click", oneRound);
+  //check if there is a winner - if so : remove eventlistener and show something
+  var check = checkGrid(grid,3,3,symbol.repeat(3));
+  if (check === true){
+    console.log("Well played.");
+    gridBoxes.forEach(function(elem){
+      elem.removeEventListener("click", oneRound);
+    });
+
+  }
+  // if there is no winner: update the turnCounter
+  turnCounter ++;
+};
 
 //adding EventListeners
+gridBoxes.forEach(function(elem){
+  elem.addEventListener("click", oneRound);
+});
 
-initialView.addEventListener('click',openSelectSettings);
-var boardDisplay = showBoard(columns,rows);
 var grid = buildGrid(columns,rows);
-var turnCounter = 0; //at the start of the game the counter is set to 0
-
-//lines below are used to test functionality and should not go into production
-/*
-var grid = buildGrid(6,4); //test the buildGrid function
-console.log(grid);
-var horizontalStrings = createHorizontalStrings(grid,4);
-console.log(horizontalStrings);
-var verticalStrings = createVerticalStrings(grid,6,4);
-console.log(verticalStrings);
-var firstDiagStrings = createDiagonalStrings(grid,6,4,true);
-console.log(firstDiagStrings);
-var secondDiagStrings = createDiagonalStrings(grid,6,4,false);
-console.log(secondDiagStrings);
-*/
