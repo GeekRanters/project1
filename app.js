@@ -1,22 +1,20 @@
 var initialView = document.querySelector('#openSelectSettingsView');
-var selectSettings = document.querySelector('.selectSettingsView');
-var gamePlayView = document.querySelector('.gamePlayView');
-var letsPlayBtn = document.querySelector('.playBtn');
 var boardCanvas = document.querySelector('.grid');
+var gamePlayView = document.querySelector('.gamePlayView');
 
-//this function hides the opening image and shows the Select Settings options
+//this function starts the game after user clicks on the image
 var openSelectSettings = function(){
-  selectSettings.scrollIntoView();
+  gamePlayView.scrollIntoView();
 };
 
-//this function hides the Select Settings options and shows the gameboard
-var startGame = function(){
-  gamePlayView.scrollIntoView();
-  };
+//moved the next few lines out of a function because they're used globally
+var columns = prompt("How many columns do you want the board to have?");
+var rows = prompt("How many rows do you want the board to have?");
+var winningNumber = prompt("How many X's or O's does one need in one row to win?");
 
 //this function is based on https://github.com/LearnTeachCode/Battleship-JavaScript/blob/gh-pages/battleship.js
 //it builds the board on the screen and creates unique id's for each small square (div)
-var showBoard = function (columns = 3,rows = 3){
+var showBoard = function (columns,rows){
   // set grid rows and columns and the size of each square
   var squareSize = 50;
 
@@ -127,12 +125,12 @@ var checkGrid = function(grid, columns, rows, winningSequence){
 //adding EventListeners
 
 initialView.addEventListener('click',openSelectSettings);
-letsPlayBtn.addEventListener('click',startGame);
-
-
+var boardDisplay = showBoard(columns,rows);
+var grid = buildGrid(columns,rows);
+var turnCounter = 0; //at the start of the game the counter is set to 0
 
 //lines below are used to test functionality and should not go into production
-
+/*
 var grid = buildGrid(6,4); //test the buildGrid function
 console.log(grid);
 var horizontalStrings = createHorizontalStrings(grid,4);
@@ -143,3 +141,4 @@ var firstDiagStrings = createDiagonalStrings(grid,6,4,true);
 console.log(firstDiagStrings);
 var secondDiagStrings = createDiagonalStrings(grid,6,4,false);
 console.log(secondDiagStrings);
+*/

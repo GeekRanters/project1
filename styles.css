@@ -39,8 +39,8 @@ img#openSelectSettingsView{
 .grid {
   	position:relative;
   	margin:0 auto 2em auto;
-  	width:720px;
-  	height:720px;
+  	width:500px;
+  	height:500px;
   }
 
   .grid div {
