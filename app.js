@@ -6,8 +6,8 @@ var boardCanvas = document.querySelector('.grid');
 var gamePlayView = document.querySelector('.gamePlayView');
 var gridBoxes = document.querySelectorAll('.box');
 var playerRound = document.querySelector('.playerNumber');
-var player1CounterLabel = document.querySelector('.player1Wins');
-var player2CounterLabel = document.querySelector('.player2Wins');
+var player1ScoreLabel = document.querySelector('.player1Wins');
+var player2ScoreLabel = document.querySelector('.player2Wins');
 var startButton = document.querySelector('button');
 
 var grid = [];
@@ -16,9 +16,8 @@ var rows = 3;
 var winningSeq1 = "XXX";
 var winningSeq2 = "OOO";
 var turnCounter = 0; //at the start of the game the counter is set to 0
-var player1Counter = 0;
-var player2Counter = 0;
-
+var player1Score = 0;
+var player2Score = 0;
 
 //this function returns an array of arrays
 var buildGrid = function(columns,rows){
@@ -129,13 +128,13 @@ var winningRound = function(currentPlayer){
   startButton.classList.remove('invisible');
   console.log("Well played.");
   if (currentPlayer.number === 1){
-    player1Counter ++;
-    player1CounterLabel.textContent = String(player1Counter);
-    localStorage.setItem('player1Score',player1Counter);
+    player1Score ++;
+    player1ScoreLabel.textContent = String(player1Score);
+    localStorage.setItem('player1Score',player1Score);
   }else{
-    player2Counter ++;
-    player2CounterLabel.textContent = String(player2Counter);
-    localStorage.setItem('player2Score',player2Counter);
+    player2Score ++;
+    player2ScoreLabel.textContent = String(player2Score);
+    localStorage.setItem('player2Score',player2Score);
   }
 };
 
@@ -189,8 +188,8 @@ var startRound = function(event){
   gridBoxes.forEach(function(elem){
     elem.addEventListener("click", oneRound);
   });
-  player1CounterLabel.textContent = localStorage.getItem('player1Score',player1Counter);
-  player2CounterLabel.textContent = localStorage.getItem('player2Score',player2Counter);
+  player1ScoreLabel.textContent = localStorage.getItem('player1Score',player1Score);
+  player2ScoreLabel.textContent = localStorage.getItem('player2Score',player2Score);
   playerRound.textContent = "Player 1 can make their move.";
 };
 
