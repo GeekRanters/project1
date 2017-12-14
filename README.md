@@ -2,6 +2,8 @@
 
 ## Game Description
 
+[Play the game here](https://karengeerts.github.io/project1/)
+
 This game allows 2 players to play tic tac toe on a computer. The computer tells you which player's turn it it.
 You can add an O or X (depending on which player you are) by clicking on an empty area in the grid.
 Once one of the players gets three of their symbols in a row, the game ends, a winner is declared and their
