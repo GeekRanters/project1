@@ -165,8 +165,7 @@ var oneRound = function(event){
   }
 };
 
-//building the board and making announcements
-
+//removing all previously added classes
 var clearBoard = function(){
   grid = [];
   gridBoxes.forEach(function(elem){
@@ -177,12 +176,8 @@ var clearBoard = function(){
   });
 };
 
-var testFunction = function(event){
-  console.log("linking buttons to actions is hard");
-};
-
+//initialises board and grid
 var startRound = function(event){
-
   clearBoard();
   turnCounter = 0;
   console.log("hi");
@@ -201,5 +196,5 @@ gridBoxes.forEach(function(elem){
 });
 startButton.addEventListener("click", startRound);
 
-
+// build the board and grid when page is opened or refreshed
 startRound(columns,rows);

@@ -1,5 +1,5 @@
 body{
-  background-color: mistyrose;
+  background-color: #AA5585;
   }
 
 * {
@@ -8,16 +8,20 @@ body{
 
 h1 {
   display: block;
-  font-size: 50px;
+  font-size: 30px;
+  color: #CD88AF;
   text-align: center;
-  margin: 10px auto;
+  margin: 5px;
+  font-family: 'Bungee', sans-serif;
 }
 
 .announcements{
+  color: #E1B4CD;
+  font-family: 'Bungee', serif;
   display: block;
-  font-size: 25px;
+  font-size: 15px;
   text-align: center;
-  margin: 10px auto;
+  margin: 5px;
 }
 
 .player1, .player2{
@@ -50,12 +54,11 @@ button:active {
   transform: translateY(4px);
 }
 
-
 .board  {
   display: flex;
   margin: 0 auto;
-  width: 720px;
-  height: 720px;
+  width: 630px;
+  height: 630px;
   justify-content: center;
 }
 
@@ -66,29 +69,29 @@ button:active {
   margin: 0 auto;
   text-align: center;
   background-color: black;
-  width: 720px;
-  height: 720px;
+  width: 630px;
+  height: 630px;
 }
 
 .grid > div {
   display: inline-block;
-  background-color: white;
-  width: 235px;
-  height: 235px;
+  background-color: #E1B4CD;
+  width: 205px;
+  height: 205px;
   border: 2px solid black;
   padding: 10px;
 }
 
 .X {
   background-image: url('images/x.gif');
-  background-size: 232px 232px;
+  background-size: 201px 201px;
   background-repeat: no-repeat;
 }
 
 
 .O {
   background-image: url('images/o.gif');
-  background-size: 232px 232px;
+  background-size: 201px 201px;
   background-repeat: no-repeat;
 }
 
