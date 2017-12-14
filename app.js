@@ -102,6 +102,7 @@ var checkGrid = function(grid, columns, rows, winningSequence){
 };
 
 var determinePlayer = function(){
+  var symbol;
   if (turnCounter % 2 === 0){
     console.log("Player 1 is playing");
     symbol = "X";
@@ -115,10 +116,11 @@ var determinePlayer = function(){
 var oneRound = function(event){
   //checks who's currently playing (based on turnCounter) in order to put an X or an O on the boardCanvas
   var symbol = determinePlayer();
-  //add the symbol to the boardCanvas
-  event.target.textContent = symbol;
-  //add the symbol to the grid array
   var position = event.target.id; //returns a string with array index values
+  //add the symbol to the boardCanvas
+  var targetBox = document.getElementById(position);
+  targetBox.classList.add(symbol);
+  //add the symbol to the grid array
   var columnNum = position[0];
   var rowNum = position[1];
   grid[columnNum][rowNum] = symbol;

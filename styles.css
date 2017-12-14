@@ -2,17 +2,56 @@ body{
   background-color: mistyrose;
   }
 
-.grid {
-  	width:350px;
-  	height:350px;
-  }
+* {
+  box-sizing: border-box;
+}
 
-.grid > div{
-  width: 100px;
-  height: 100px;
+h1 {
+  display: block;
+  font-size: 50px;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.board  {
+  display: flex;
+  margin: 0 auto;
+  width: 900px;
+  justify-content: center;
+}
+
+.grid {
   display: inline-block;
-  border: 5px black solid;
+  padding: 0 auto ;
+  margin: 0 auto;
+  text-align: center;
+  background-color: black;
+  width: 810px;
+  height: 810px;
+}
+
+.grid > div {
+  display: inline-block;
   background-color: white;
-  font-family: fantasy;
-  font-size: 30px;
+  width: 265px;
+  height: 265px;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.grids:hover{
+  background-color: lightgrey;
+}
+
+.X {
+  background-image: url('images/x.gif');
+  background-size: 262px 262px;
+  background-repeat: no-repeat;
+}
+
+
+.O {
+  background-image: url('images/o.gif');
+  background-size: 262px 262px;
+  background-repeat: no-repeat;
 }
