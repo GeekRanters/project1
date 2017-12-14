@@ -40,6 +40,6 @@ when I find the time to work on Tic Tac Toe Hypnosis 2.0.
 
 ## Thanks to:
 
-* [Drake] (https://dribbble.com/DrakeTuura) whose animated X's and O's I used
+* [Drake-the-designer](https://dribbble.com/DrakeTuura) whose animated X's and O's I used
 * Everyone who contributed to [this StackOverflow article](https://stackoverflow.com/questions/35917734/how-do-i-traverse-an-array-diagonally-in-javascript)
 describing how to traverse an array diagonally in JavaScript
