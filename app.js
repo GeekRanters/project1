@@ -15,7 +15,7 @@ var columns = 3;
 var rows = 3;
 var winningSeq1 = "XXX";
 var winningSeq2 = "OOO";
-var turnCounter = 0; //at the start of the game the counter is set to 0
+var turnCounter = 2; //at the start of the game the counter is set to 0
 var player1Score = 0;
 var player2Score = 0;
 
@@ -156,18 +156,19 @@ var oneRound = function(event){
   if (check === true){
     winningRound(currentPlayer);
     }
-  // if there is no winner in this round: update the turnCounter until 9 boxes have been filled out
-  if (turnCounter < 9){
-  turnCounter ++;
-  } else {
+  // check if there is a tie
+  var tie = checkGrid(grid,3,3,"i");
+  if (tie === false){
   playerRound.textContent = "It's a draw!";
   startButton.classList.add('visible');
   startButton.classList.remove('invisible');
   }
+  turnCounter++;
 };
 
 //removing all previously added classes
 var clearBoard = function(){
+  turnCounter = localStorage.setItem('turnCounter',turnCounter);
   grid = [];
   gridBoxes.forEach(function(elem){
     elem.classList.remove("X");
@@ -175,12 +176,13 @@ var clearBoard = function(){
   gridBoxes.forEach(function(elem){
     elem.classList.remove("O");
   });
+  playerRound.textContent = "";
 };
 
 //initialises board and grid
 var startRound = function(event){
   clearBoard();
-  turnCounter = 0;
+  turnCounter = localStorage.getItem('turnCounter',turnCounter);
   console.log("hi");
   startButton.classList.add('invisible');
   startButton.classList.remove('visible');
@@ -190,7 +192,8 @@ var startRound = function(event){
   });
   player1ScoreLabel.textContent = localStorage.getItem('player1Score',player1Score);
   player2ScoreLabel.textContent = localStorage.getItem('player2Score',player2Score);
-  playerRound.textContent = "Player 1 can make their move.";
+  var displayPlayer = Math.floor(turnCounter % 2)+1;
+  playerRound.textContent = "Player " + displayPlayer + " can make their move.";
 };
 
 //adding EventListeners
