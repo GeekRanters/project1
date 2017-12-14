@@ -13,12 +13,26 @@ h1 {
   margin: 10px auto;
 }
 
+.announcements{
+  display: block;
+  font-size: 25px;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.playerNumber{
+  width: 30%;
+  display: inline-block;
+}
+
 .board  {
   display: flex;
   margin: 0 auto;
-  width: 900px;
+  width: 720px;
+  height: 720px;
   justify-content: center;
 }
+
 
 .grid {
   display: inline-block;
@@ -26,32 +40,28 @@ h1 {
   margin: 0 auto;
   text-align: center;
   background-color: black;
-  width: 810px;
-  height: 810px;
+  width: 720px;
+  height: 720px;
 }
 
 .grid > div {
   display: inline-block;
   background-color: white;
-  width: 265px;
-  height: 265px;
+  width: 235px;
+  height: 235px;
   border: 2px solid black;
   padding: 10px;
 }
 
-.grids:hover{
-  background-color: lightgrey;
-}
-
 .X {
   background-image: url('images/x.gif');
-  background-size: 262px 262px;
+  background-size: 232px 232px;
   background-repeat: no-repeat;
 }
 
 
 .O {
   background-image: url('images/o.gif');
-  background-size: 262px 262px;
+  background-size: 232px 232px;
   background-repeat: no-repeat;
 }

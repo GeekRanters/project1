@@ -1,23 +1,23 @@
+/*
+Add score counter and add to UI;
+Add functionality to play new game;
+Add localstorage to remember scores */
+
 var boardCanvas = document.querySelector('.grid');
 var gamePlayView = document.querySelector('.gamePlayView');
 var gridBoxes = document.querySelectorAll('.box');
+var playerRound = document.querySelector('.playerNumber');
+var player1CounterLabel = document.querySelector('.player1Wins');
+var player2CounterLabel = document.querySelector('.player2Wins');
 
 
-/*var box00 = document.querySelector('.box00');
-var box01 = document.querySelector('.box01');
-var box02 = document.querySelector('.box02');
-var box10 = document.querySelector('.box10');
-var box11 = document.querySelector('.box11');
-var box12 = document.querySelector('.box12');
-var box20 = document.querySelector('.box20');
-var box21 = document.querySelector('.box21');
-var box22 = document.querySelector('.box22');
-*/
 var columns = 3;
 var rows = 3;
 var winningSeq1 = "XXX";
 var winningSeq2 = "OOO";
 var turnCounter = 0; //at the start of the game the counter is set to 0
+var player1Counter = 0;
+var player2Counter = 0;
 
 
 //this function returns an array of arrays
@@ -102,41 +102,66 @@ var checkGrid = function(grid, columns, rows, winningSequence){
 };
 
 var determinePlayer = function(){
-  var symbol;
+  var currentPlayer = {
+    symbol: "",
+    number: 0
+  };
   if (turnCounter % 2 === 0){
     console.log("Player 1 is playing");
-    symbol = "X";
+    playerRound.textContent = "Player 2 can make their move.";
+    currentPlayer.symbol = "X";
+    currentPlayer.number = 1;
   } else {
     console.log("Player 2 is playing");
-    symbol = "O";
+    playerRound.textContent = "Player 1 can make their move.";
+    currentPlayer.symbol = "O";
+    currentPlayer.number = 2;
   }
-  return symbol;
+  return currentPlayer;
+};
+
+var winningRound = function(currentPlayer){
+  playerRound.textContent = "We have a winner: the " + currentPlayer.symbol + "'s have won! Well done, player " + currentPlayer.number + "!" ;
+  gridBoxes.forEach(function(elem){
+    elem.removeEventListener("click", oneRound);
+  });
+
+  console.log("Well played.");
+  if (currentPlayer.number === 1){
+    player1Counter ++;
+    player1CounterLabel.textContent = String(player1Counter);
+  }else{
+    player2Counter ++;
+    player2CounterLabel.textContent = String(player2Counter);
+  }
+
+
 };
 
 var oneRound = function(event){
   //checks who's currently playing (based on turnCounter) in order to put an X or an O on the boardCanvas
-  var symbol = determinePlayer();
+  var currentPlayer = determinePlayer();
   var position = event.target.id; //returns a string with array index values
   //add the symbol to the boardCanvas
   var targetBox = document.getElementById(position);
-  targetBox.classList.add(symbol);
+  targetBox.classList.add(currentPlayer.symbol);
   //add the symbol to the grid array
   var columnNum = position[0];
   var rowNum = position[1];
-  grid[columnNum][rowNum] = symbol;
+  grid[columnNum][rowNum] = currentPlayer.symbol;
   //remove the eventlistener so the box can not be clicked again
   event.target.removeEventListener("click", oneRound);
   //check if there is a winner - if so : remove eventlistener and show something
-  var check = checkGrid(grid,3,3,symbol.repeat(3));
+  var check = checkGrid(grid,3,3,currentPlayer.symbol.repeat(3));
   if (check === true){
-    console.log("Well played.");
-    gridBoxes.forEach(function(elem){
-      elem.removeEventListener("click", oneRound);
-    });
-
-  }
-  // if there is no winner: update the turnCounter
+    winningRound(currentPlayer);
+    }
+  // if there is no winner in this round: update the turnCounter until 9 boxes have been filled out
+  if (turnCounter < 8){
   turnCounter ++;
+  } else {
+  playerRound.textContent = "It's a draw!";
+  }
 };
 
 //adding EventListeners
@@ -145,3 +170,4 @@ gridBoxes.forEach(function(elem){
 });
 
 var grid = buildGrid(columns,rows);
+playerRound.textContent = "Player 1 can make their move.";
