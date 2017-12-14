@@ -131,11 +131,11 @@ var winningRound = function(currentPlayer){
   if (currentPlayer.number === 1){
     player1Counter ++;
     player1CounterLabel.textContent = String(player1Counter);
-    //localStorage.setItem('player1Score',playeplayer1Counter);
+    localStorage.setItem('player1Score',player1Counter);
   }else{
     player2Counter ++;
     player2CounterLabel.textContent = String(player2Counter);
-    //localStorage.setItem('player2Score',playeplayer2Counter);
+    localStorage.setItem('player2Score',player2Counter);
   }
 };
 
@@ -158,7 +158,7 @@ var oneRound = function(event){
     winningRound(currentPlayer);
     }
   // if there is no winner in this round: update the turnCounter until 9 boxes have been filled out
-  if (turnCounter < 8){
+  if (turnCounter < 9){
   turnCounter ++;
   } else {
   playerRound.textContent = "It's a draw!";
@@ -180,8 +180,6 @@ var clearBoard = function(){
 
 //initialises board and grid
 var startRound = function(event){
-  //player1CounterLabel = localStorage.getItem("player1Score");
-  //player2CounterLabel = localStorage.getItem("player2Score");
   clearBoard();
   turnCounter = 0;
   console.log("hi");
@@ -191,6 +189,8 @@ var startRound = function(event){
   gridBoxes.forEach(function(elem){
     elem.addEventListener("click", oneRound);
   });
+  player1CounterLabel.textContent = localStorage.getItem('player1Score',player1Counter);
+  player2CounterLabel.textContent = localStorage.getItem('player2Score',player2Counter);
   playerRound.textContent = "Player 1 can make their move.";
 };
 
