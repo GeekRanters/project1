@@ -20,10 +20,36 @@ h1 {
   margin: 10px auto;
 }
 
-.playerNumber{
-  width: 30%;
+.player1, .player2{
+  width: 35%;
   display: inline-block;
 }
+
+button{
+  margin: 2px;
+  padding: 15px 15px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #5c3ba5;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+button:hover {
+  background-color: #4d3387
+}
+
+button:active {
+  background-color: #4d3387;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 
 .board  {
   display: flex;
@@ -64,4 +90,12 @@ h1 {
   background-image: url('images/o.gif');
   background-size: 232px 232px;
   background-repeat: no-repeat;
+}
+
+.visible{
+  display: inline-block;
+}
+
+.invisible{
+  display: none;
 }

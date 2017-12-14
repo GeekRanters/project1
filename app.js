@@ -1,6 +1,5 @@
 /*
-Add score counter and add to UI;
-Add functionality to play new game;
+Add functionality to alternate players to start;
 Add localstorage to remember scores */
 
 var boardCanvas = document.querySelector('.grid');
@@ -9,8 +8,9 @@ var gridBoxes = document.querySelectorAll('.box');
 var playerRound = document.querySelector('.playerNumber');
 var player1CounterLabel = document.querySelector('.player1Wins');
 var player2CounterLabel = document.querySelector('.player2Wins');
+var startButton = document.querySelector('button');
 
-
+var grid = [];
 var columns = 3;
 var rows = 3;
 var winningSeq1 = "XXX";
@@ -23,7 +23,7 @@ var player2Counter = 0;
 //this function returns an array of arrays
 var buildGrid = function(columns,rows){
   //build row that holds as many columns as specified
-  var grid = [];
+
   var row = "i".repeat(columns);
   //push this row into an array as many times as rows needed
   for (var i = 0; i < rows; i++){
@@ -125,7 +125,8 @@ var winningRound = function(currentPlayer){
   gridBoxes.forEach(function(elem){
     elem.removeEventListener("click", oneRound);
   });
-
+  startButton.classList.add('visible');
+  startButton.classList.remove('invisible');
   console.log("Well played.");
   if (currentPlayer.number === 1){
     player1Counter ++;
@@ -134,8 +135,6 @@ var winningRound = function(currentPlayer){
     player2Counter ++;
     player2CounterLabel.textContent = String(player2Counter);
   }
-
-
 };
 
 var oneRound = function(event){
@@ -161,13 +160,46 @@ var oneRound = function(event){
   turnCounter ++;
   } else {
   playerRound.textContent = "It's a draw!";
+  startButton.classList.add('visible');
+  startButton.classList.remove('invisible');
   }
+};
+
+//building the board and making announcements
+
+var clearBoard = function(){
+  grid = [];
+  gridBoxes.forEach(function(elem){
+    elem.classList.remove("X");
+  });
+  gridBoxes.forEach(function(elem){
+    elem.classList.remove("O");
+  });
+};
+
+var testFunction = function(event){
+  console.log("linking buttons to actions is hard");
+};
+
+var startRound = function(event){
+
+  clearBoard();
+  turnCounter = 0;
+  console.log("hi");
+  startButton.classList.add('invisible');
+  startButton.classList.remove('visible');
+  var grid = buildGrid(columns,rows);
+  gridBoxes.forEach(function(elem){
+    elem.addEventListener("click", oneRound);
+  });
+  playerRound.textContent = "Player 1 can make their move.";
 };
 
 //adding EventListeners
 gridBoxes.forEach(function(elem){
   elem.addEventListener("click", oneRound);
 });
+startButton.addEventListener("click", startRound);
 
-var grid = buildGrid(columns,rows);
-playerRound.textContent = "Player 1 can make their move.";
+
+startRound(columns,rows);
