@@ -131,9 +131,11 @@ var winningRound = function(currentPlayer){
   if (currentPlayer.number === 1){
     player1Counter ++;
     player1CounterLabel.textContent = String(player1Counter);
+    //localStorage.setItem('player1Score',playeplayer1Counter);
   }else{
     player2Counter ++;
     player2CounterLabel.textContent = String(player2Counter);
+    //localStorage.setItem('player2Score',playeplayer2Counter);
   }
 };
 
@@ -178,6 +180,8 @@ var clearBoard = function(){
 
 //initialises board and grid
 var startRound = function(event){
+  //player1CounterLabel = localStorage.getItem("player1Score");
+  //player2CounterLabel = localStorage.getItem("player2Score");
   clearBoard();
   turnCounter = 0;
   console.log("hi");
