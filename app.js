@@ -166,6 +166,8 @@ var oneRound = function(event){
   }
   turnCounter++;
   turnCounter = localStorage.setItem('turnCounter',turnCounter);
+  localStorage.setItem('player2Score',player2Score);
+  localStorage.setItem('player1Score',player1Score);
 };
 
 //removing all previously added classes
@@ -178,6 +180,7 @@ var clearBoard = function(){
     elem.classList.remove("O");
   });
   playerRound.textContent = "";
+
 };
 
 //initialises board and grid
