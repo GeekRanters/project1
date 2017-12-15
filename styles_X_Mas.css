@@ -1,0 +1,104 @@
+body{
+  background-color: #AA5585;
+  }
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  display: block;
+  font-size: 30px;
+  color: #CD88AF;
+  text-align: center;
+  margin: 5px;
+  font-family: 'Bungee', sans-serif;
+}
+
+.announcements{
+  color: #E1B4CD;
+  font-family: 'Bungee', serif;
+  display: block;
+  font-size: 15px;
+  text-align: center;
+  margin: 5px;
+}
+
+.player1, .player2{
+  width: 35%;
+  display: inline-block;
+}
+
+button{
+  margin: 2px;
+  padding: 15px 15px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #5c3ba5;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+button:hover {
+  background-color: #4d3387
+}
+
+button:active {
+  background-color: #4d3387;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.board  {
+  display: flex;
+  margin: 0 auto;
+  width: 630px;
+  height: 630px;
+  justify-content: center;
+}
+
+
+.grid {
+  display: inline-block;
+  padding: 0 auto ;
+  margin: 0 auto;
+  text-align: center;
+  background-color: black;
+  width: 630px;
+  height: 630px;
+}
+
+.grid > div {
+  display: inline-block;
+  background-color: #E1B4CD;
+  width: 205px;
+  height: 205px;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.X {
+  background-image: url('images/Star.png');
+  background-size: 201px 201px;
+  background-repeat: no-repeat;
+}
+
+
+.O {
+  background-image: url('images/Reindeer.png');
+  background-size: 201px 201px;
+  background-repeat: no-repeat;
+}
+
+.visible{
+  display: inline-block;
+}
+
+.invisible{
+  display: none;
+}

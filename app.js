@@ -120,7 +120,8 @@ var determinePlayer = function(){
 };
 
 var winningRound = function(currentPlayer){
-  playerRound.textContent = "We have a winner: the " + currentPlayer.symbol + "'s have won! Well done, player " + currentPlayer.number + "!" ;
+/*  playerRound.textContent = "We have a winner: the " + currentPlayer.symbol + "'s have won! Well done, player " + currentPlayer.number + "!" ;*/
+playerRound.textContent = "We have a winner! Well done, player " + currentPlayer.number + "!";
   gridBoxes.forEach(function(elem){
     elem.removeEventListener("click", oneRound);
   });

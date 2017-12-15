@@ -1,0 +1,12 @@
+Problem: player 1 always starts the round.
+Counter is set to 0 at the start of every round.
+Counter is used to know when there's a draw (after 9 turns, when counter reaches 8).
+Changing counter variable will have impact on "checkfordraw" functionality.
+
+Solutions:
+- use another variable used solely to determine whose round it is.
+Variable can NOT be calculated based on player scores (because it doesn't factor in the ties). Variable needs to be set to 0 at start of game (Player 1 to play), be kept in localStorage, updated every time player clicks "play again" and then read again in
+the startRound function.
+
+var playerTurn value alternates between 1 and 2, to keep things neat and easily understood
+whose turn it is.
