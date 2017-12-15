@@ -25,6 +25,7 @@ was going to be the most difficult part. So I wrote a programme that contained a
 work in the console. All I had to do then was glue it together with a nice looking UI.
 * **HTML and CSS can be easy.** But I feel I should spend some more time (over the :christmas_tree: break?) playing around with 
 it so I can create simple wireframes more quickly - such as a 3 by 3 grid with some additional text and a button.
+* **Local storage.** I tweaked the game so that it will remember whose turn it was and what the scores were. Achieving this using local storage is something I figured out on my own.
 
 ## Most proud of ...
 
@@ -41,5 +42,6 @@ when I find the time to work on Tic Tac Toe Hypnosis 2.0.
 ## Thanks to:
 
 * [Drake-the-designer](https://dribbble.com/DrakeTuura) whose animated X's and O's I used
+* [Olivetty](https://www.iconfinder.com/olivetty) whose Christmas icons I used for the Christmas version of this game.
 * Everyone who contributed to [this StackOverflow article](https://stackoverflow.com/questions/35917734/how-do-i-traverse-an-array-diagonally-in-javascript)
 describing how to traverse an array diagonally in JavaScript
