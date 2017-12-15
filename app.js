@@ -15,7 +15,7 @@ var columns = 3;
 var rows = 3;
 var winningSeq1 = "XXX";
 var winningSeq2 = "OOO";
-var turnCounter = 2; //at the start of the game the counter is set to 0
+var turnCounter = 0; //at the start of the game the counter is set to 0
 var player1Score = 0;
 var player2Score = 0;
 
@@ -140,6 +140,7 @@ var winningRound = function(currentPlayer){
 
 var oneRound = function(event){
   //checks who's currently playing (based on turnCounter) in order to put an X or an O on the boardCanvas
+  turnCounter = localStorage.getItem('turnCounter',turnCounter);
   var currentPlayer = determinePlayer();
   var position = event.target.id; //returns a string with array index values
   //add the symbol to the boardCanvas
@@ -164,11 +165,11 @@ var oneRound = function(event){
   startButton.classList.remove('invisible');
   }
   turnCounter++;
+  turnCounter = localStorage.setItem('turnCounter',turnCounter);
 };
 
 //removing all previously added classes
 var clearBoard = function(){
-  turnCounter = localStorage.setItem('turnCounter',turnCounter);
   grid = [];
   gridBoxes.forEach(function(elem){
     elem.classList.remove("X");
@@ -182,7 +183,6 @@ var clearBoard = function(){
 //initialises board and grid
 var startRound = function(event){
   clearBoard();
-  turnCounter = localStorage.getItem('turnCounter',turnCounter);
   console.log("hi");
   startButton.classList.add('invisible');
   startButton.classList.remove('visible');
@@ -192,7 +192,8 @@ var startRound = function(event){
   });
   player1ScoreLabel.textContent = localStorage.getItem('player1Score',player1Score);
   player2ScoreLabel.textContent = localStorage.getItem('player2Score',player2Score);
-  var displayPlayer = Math.floor(turnCounter % 2)+1;
+  turnCounter = localStorage.getItem('turnCounter',turnCounter);
+  var displayPlayer = Math.floor(turnCounter % 2) + 1;
   playerRound.textContent = "Player " + displayPlayer + " can make their move.";
 };
 
